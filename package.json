@@ -1,0 +1,119 @@
+{
+  "name": "webterminal-vscode",
+  "displayName": "Launch WebTerminals from InterSystems Server Manager",
+  "description": "Adds WebTerminal launch buttons to the InterSystems Server Manager tree",
+  "version": "0.0.1",
+  "publisher": "georgejames",
+  "license": "MIT",
+  "keywords": [
+    "intersystems",
+    "objectscript"
+  ],
+  "engines": {
+    "vscode": "^1.67.0"
+  },
+  "icon": "images/logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gjsjohnmurray/webterminal-vscode.git"
+  },
+  "contributors": [
+    {
+      "name": "John Murray",
+      "email": "johnm@georgejames.com"
+    }
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:intersystems-community_servermanager"
+  ],
+  "extensionDependencies": [
+    "intersystems-community.servermanager"
+  ],
+  "main": "./out/main",
+  "contributes": {
+    "commands": [
+      {
+        "command": "webterminal.intersystems-servermanager",
+        "title": "WebTerminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "webterminal-namespace.intersystems-servermanager",
+        "title": "WebTerminal here",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "webterminal-external.intersystems-servermanager",
+        "title": "WebTerminal in External Browser"
+      },
+      {
+        "command": "webterminal-external-namespace.intersystems-servermanager",
+        "title": "WebTerminal here in External Browser"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "webterminal.intersystems-servermanager",
+          "when": "view == intersystems-community_servermanager && viewItem =~ /\\.server\\./",
+          "group": "inline@20"
+        },
+        {
+          "command": "webterminal-external.intersystems-servermanager",
+          "when": "view == intersystems-community_servermanager && viewItem =~ /\\.server\\./",
+          "group": "webterminal@20"
+        },
+        {
+          "command": "webterminal-namespace.intersystems-servermanager",
+          "when": "view == intersystems-community_servermanager && viewItem =~ /namespace$/",
+          "group": "inline@1"
+        },
+        {
+          "command": "webterminal-external-namespace.intersystems-servermanager",
+          "when": "view == intersystems-community_servermanager && viewItem =~ /namespace$/",
+          "group": "webterminal@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "webterminal.intersystems-servermanager",
+          "when": "false"
+        },
+        {
+          "command": "webterminal-namespace.intersystems-servermanager",
+          "when": "false"
+        },
+        {
+          "command": "webterminal-external.intersystems-servermanager",
+          "when": "false"
+        },
+        {
+          "command": "webterminal-external-namespace.intersystems-servermanager",
+          "when": "false"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^14.0.1",
+    "@types/vscode": "^1.67.0",
+    "glob": "^7.1.4",
+    "mocha": "^6.1.4",
+    "source-map-support": "^0.5.12",
+    "typescript": "^4.2.2",
+    "vsce": "^2.8.0",
+    "vscode-test": "^1.5.1"
+  }
+}
