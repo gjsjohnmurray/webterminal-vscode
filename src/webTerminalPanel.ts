@@ -53,10 +53,7 @@ export class WebTerminalPanel {
     this._namespace = namespace;
 
     // Update the panel's icon
-    this._panel.iconPath = {
-      dark: vscode.Uri.joinPath(webviewFolderUri, "terminal-dark.svg"),
-      light: vscode.Uri.joinPath(webviewFolderUri, "terminal-light.svg"),
-    };
+   this._panel.iconPath = vscode.Uri.joinPath(webviewFolderUri, "favicon.ico");
 
     // Set the webview's initial content
     this.setWebviewHtml(webTerminalUri.toString(true));
