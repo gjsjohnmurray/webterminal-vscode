@@ -1,8 +1,47 @@
 // Script run within the webview itself.
 (function () {
+  const iframe = document.querySelector('iframe');
+  const showText = document.getElementById("showText");
+
+  let token = "am9obm06am9obm0="; //johnm:johnm hardcoded - TODO - fix this
+
+  const loadIframe = (url) => {
+
+    // Send an XHR request first so we can suppy an Authorization header
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = handler;
+    //xhr.responseType = 'text';
+    xhr.setRequestHeader('Authorization', 'Basic ' + token);
+    xhr.send();
+
+    // If we get a good response, this will have planted the session cookie that all subsequent requests need to supply.
+    // So now make the iframe go to the launch endpoint.
+    function handler() {
+      if (this.readyState === this.DONE) {
+        if (this.status === 200) {
+          //showText.innerText = "Got a good XHR response";
+          iframe.src = url;
+        } else {
+          showText.innerText += " - XHR auth request failed: status = " + this.status;
+        }
+      }
+    }
+
+  }
   // Handle messages sent from the extension to the webview
   window.addEventListener("message", (event) => {
     const message = event.data; // The json data that the extension sent
-    document.querySelector('iframe').src = message.url;
-  });
+
+    loadIframe(message.url);
+});
+
+  // This attempt to get focus into the WebTerminal doesn't seem to be working
+  function fnLoad() {
+    document.querySelector('iframe').focus();
+  }
+
+  document.body.addEventListener("load", fnLoad);
+
 })();

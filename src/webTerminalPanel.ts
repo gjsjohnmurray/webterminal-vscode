@@ -111,9 +111,10 @@ export class WebTerminalPanel {
 
 				<link href="${styleUri}" rel="stylesheet">
 			</head>
-			<body onload="document.querySelector('iframe').focus()">
-				<div id="content" class="content">
-					<iframe sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
+			<body>
+        <div id="showText"></div>
+        <div id="content" class="content">
+					<iframe sandbox="allow-scripts allow-same-origin"></iframe>
 				</div>
 
 				<script nonce="${nonce}" src="${scriptUri}"></script>

@@ -16,7 +16,7 @@ export async function webTerminalUri(serverId: string, withCredentials: boolean,
       const pathPrefix = serverSpec.webServer.pathPrefix
 
       let query = namespace ? `&ns=${namespace}` : "";
-      if (withCredentials) {
+      if (withCredentials && false) {
         let username = serverSpec.username;
         let password = serverSpec.password;
 
@@ -44,7 +44,7 @@ export async function webTerminalUri(serverId: string, withCredentials: boolean,
       }
       query = query.slice(1);
 
-      return vscode.Uri.from({scheme, authority: `${host}:${port}`, path: '/terminal/', query})
+      return vscode.Uri.from({scheme, authority: `${host}:${port}`, path: `${pathPrefix}/terminal-vscode/`, query})
     }
   }
 }
