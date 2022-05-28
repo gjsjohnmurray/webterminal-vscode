@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
+import { WebTerminalMessage } from './webterminalPanel';
 
-export async function webTerminalUri(serverId: string, withCredentials: boolean, namespace?: string): Promise<vscode.Uri> {
+export async function webViewMessage(serverId: string, withCredentials: boolean, namespace?: string): Promise<WebTerminalMessage> {
   const smExtension = vscode.extensions.getExtension('intersystems-community.servermanager');
   if (smExtension) {
     if (!smExtension.isActive) {
@@ -15,8 +16,9 @@ export async function webTerminalUri(serverId: string, withCredentials: boolean,
       const port = serverSpec.webServer.port
       const pathPrefix = serverSpec.webServer.pathPrefix
 
-      let query = namespace ? `&ns=${namespace}` : "";
-      if (withCredentials && false) {
+      const query = namespace ? `ns=${namespace}` : "";
+      const message: WebTerminalMessage = {url: vscode.Uri.from({scheme, authority: `${host}:${port}`, path: `${pathPrefix}/terminal-vscode/`, query}).toString(true)};
+      if (withCredentials) {
         let username = serverSpec.username;
         let password = serverSpec.password;
 
@@ -33,18 +35,12 @@ export async function webTerminalUri(serverId: string, withCredentials: boolean,
               password = session.accessToken;
           }
         }
-        if (username) {
-            const usernameEncoded = encodeURIComponent(username);
-            query += `&CacheUsername=${usernameEncoded}&IRISUsername=${usernameEncoded}`;
-            if (password) {
-              const passwordEncoded = encodeURIComponent(password);
-              query += `&CachePassword=${passwordEncoded}&IRISPassword=${passwordEncoded}`;
-            }
+        if (username && password) {
+            message.authToken = Buffer.from(`${username}:${password}`).toString("base64");
           }
       }
-      query = query.slice(1);
 
-      return vscode.Uri.from({scheme, authority: `${host}:${port}`, path: `${pathPrefix}/terminal-vscode/`, query})
+      return message;
     }
   }
 }

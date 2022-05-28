@@ -1,12 +1,14 @@
 import * as vscode from "vscode";
-import { webTerminalUri } from "./utils";
+import { webViewMessage } from "./utils";
 
 /**
  * The schema of the message that gets sent to the webview.
  */
-type WebviewMessage = {
+export type WebTerminalMessage = {
   /** The url launching the WebTerminal */
   url: string;
+  /** Token for the Authorization header */
+  authToken?: string;
 };
 
 /**
@@ -22,7 +24,7 @@ export class WebTerminalPanel {
   private readonly _namespace: string;
   private _disposables: vscode.Disposable[] = [];
 
-  public static create(extensionUri: vscode.Uri, webTerminalUri: vscode.Uri, serverId: string, namespace?: string): WebTerminalPanel {
+  public static create(extensionUri: vscode.Uri, webTerminalMessage: WebTerminalMessage, serverId: string, namespace?: string): WebTerminalPanel {
 
     // Get the full path to the folder containing our webview files
     const webviewFolderUri: vscode.Uri = vscode.Uri.joinPath(extensionUri, "webview");
@@ -43,10 +45,10 @@ export class WebTerminalPanel {
       }
     );
 
-    return new WebTerminalPanel(panel, webviewFolderUri, webTerminalUri, serverId);
+    return new WebTerminalPanel(panel, webviewFolderUri, webTerminalMessage, serverId);
   }
 
-  private constructor(panel: vscode.WebviewPanel, webviewFolderUri: vscode.Uri, webTerminalUri: vscode.Uri, serverId: string, namespace?: string) {
+  private constructor(panel: vscode.WebviewPanel, webviewFolderUri: vscode.Uri, webTerminalMessage: WebTerminalMessage, serverId: string, namespace?: string) {
     this._panel = panel;
     this._webviewFolderUri = webviewFolderUri;
     this._serverId = serverId;
@@ -56,13 +58,13 @@ export class WebTerminalPanel {
    this._panel.iconPath = vscode.Uri.joinPath(webviewFolderUri, "favicon.ico");
 
     // Set the webview's initial content
-    this.setWebviewHtml(webTerminalUri.toString(true));
+    this.setWebviewHtml(webTerminalMessage.url);
 
     // Register handlers
     this.registerEventHandlers();
 
-    // Send the initial message to the webview
-    this._panel.webview.postMessage(this.createMessage(webTerminalUri));
+    // Send the message to the webview
+    this._panel.webview.postMessage(webTerminalMessage);
   }
 
   /**
@@ -151,17 +153,6 @@ export class WebTerminalPanel {
         disp.dispose();
       }
     }
-  }
-
-  /**
-   * Create the message to send to the webview.
-   */
-  private createMessage(webTerminalUri: vscode.Uri): WebviewMessage {
-
-    // Create the message
-    return {
-      url: webTerminalUri.toString(true),
-    };
   }
 
   /**

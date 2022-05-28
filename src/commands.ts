@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { webTerminalUri } from './utils';
+import { webViewMessage } from './utils';
 import { WebTerminalPanel } from './webterminalPanel';
 
 export async function register(context: vscode.ExtensionContext) {
@@ -15,13 +15,13 @@ export async function register(context: vscode.ExtensionContext) {
     if (!extension.isActive) await extension.activate();
 
     const launchExternal = async (serverId, namespace?) => {
-        const uri = await webTerminalUri(serverId, false, namespace);
-        vscode.env.openExternal(uri);
+        const url = (await webViewMessage(serverId, false, namespace)).url;
+        vscode.env.openExternal(vscode.Uri.parse(url, true));
     }
 
     const launchPanel = async (serverId, namespace?) => {
-        const uri = await webTerminalUri(serverId, true, namespace);
-        WebTerminalPanel.create(context.extensionUri, uri, serverId, namespace);
+        const message = await webViewMessage(serverId, true, namespace);
+        WebTerminalPanel.create(context.extensionUri, message, serverId, namespace);
     }
 
     // Register WebTerminal external browser launcher for server context menu

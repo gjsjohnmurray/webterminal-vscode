@@ -4,9 +4,7 @@
   const showText = document.getElementById("showText");
   const placeholder = document.getElementById("placeholder");
 
-  let token = "am9obm06am9obm0="; //johnm:johnm hardcoded - TODO - fix this
-
-  const loadIframe = (url) => {
+  const loadIframe = (url, token) => {
 
     // Send an XHR request first so we can supply an Authorization header
     var xhr = new XMLHttpRequest();
@@ -35,7 +33,7 @@
   window.addEventListener("message", (event) => {
     const message = event.data; // The json data that the extension sent
 
-    loadIframe(message.url);
+    loadIframe(message.url, message.authToken);
 });
 
   // This attempt to get focus into the WebTerminal doesn't seem to be working
