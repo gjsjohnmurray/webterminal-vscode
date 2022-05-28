@@ -122,7 +122,7 @@ export class WebTerminalPanel {
               <li>Connection specifies a hostname which matches the target server's certificate.</li>
               <li>Web application <b>/terminal-vscode</b> was added as a copy of WebTerminal's /terminal application but with <b>Session Cookie Scope</b> set to <b>None</b>.</li>
               <li>The <b>Parameter HandleCorsRequest=1</b> patch was added to <b>WebTerminal.Router.cls</b> and the class was recompiled.</li>
-              <li>The account use by the Web Gateway (typically <b>CSPSystem</b>) has at least READ privilege on the security resource which protects WebTerminal's code database.
+              <li>The account used by the Web Gateway (typically <b>CSPSystem</b>) has at least READ privilege on the security resource which protects WebTerminal's code database.
             </ul>
             Use the <b>WebTerminal in External Browser</b> option from the context menu of the server's row in the Server Manager tree to verify some of these factors.
           </p>

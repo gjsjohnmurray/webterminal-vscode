@@ -1,7 +1,4 @@
 # Change Log
-All notable changes to the "objectscript-error-wizard" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-- Initial release
+## 1.0.0 (28-May-2022)
+* Initial release. Entered into the [InterSystems Grand Prix 2022](https://openexchange.intersystems.com/contest/23) programming contest.
