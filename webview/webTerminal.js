@@ -2,17 +2,17 @@
 (function () {
   const iframe = document.querySelector('iframe');
   const showText = document.getElementById("showText");
+  const placeholder = document.getElementById("placeholder");
 
   let token = "am9obm06am9obm0="; //johnm:johnm hardcoded - TODO - fix this
 
   const loadIframe = (url) => {
 
-    // Send an XHR request first so we can suppy an Authorization header
+    // Send an XHR request first so we can supply an Authorization header
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url);
     xhr.withCredentials = true;
     xhr.onreadystatechange = handler;
-    //xhr.responseType = 'text';
     xhr.setRequestHeader('Authorization', 'Basic ' + token);
     xhr.send();
 
@@ -22,9 +22,10 @@
       if (this.readyState === this.DONE) {
         if (this.status === 200) {
           //showText.innerText = "Got a good XHR response";
+          placeholder.style.display = "none";
           iframe.src = url;
         } else {
-          showText.innerText += " - XHR auth request failed: status = " + this.status;
+          //showText.innerText += " - XHR auth request failed: status = " + this.status;
         }
       }
     }

@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { webTerminalUri } from "./utils";
 
 /**
  * The schema of the message that gets sent to the webview.
@@ -58,7 +59,7 @@ export class WebTerminalPanel {
     };
 
     // Set the webview's initial content
-    this.setWebviewHtml();
+    this.setWebviewHtml(webTerminalUri.toString(true));
 
     // Register handlers
     this.registerEventHandlers();
@@ -70,7 +71,7 @@ export class WebTerminalPanel {
   /**
    * Set the static html for the webview.
    */
-  private setWebviewHtml() {
+  private setWebviewHtml(appUrl: string) {
     const webview = this._panel.webview;
 
     // Local path to script and css for the webview
@@ -113,6 +114,23 @@ export class WebTerminalPanel {
 			</head>
 			<body>
         <div id="showText"></div>
+
+        <div id="placeholder">
+          <h2 id="header">Preparing your WebTerminal...</h2>
+          <p>
+            If this message remains for more than a few seconds there's a problem connecting to <b>${appUrl}</b> to launch it here. Check the following:
+            <ul>
+              <li>Credentials are correct.</li>
+              <li>Connection uses the <b>https</b> protocol.</li>
+              <li>Connection specifies a hostname which matches the target server's certificate.</li>
+              <li>Web application <b>/terminal-vscode</b> was added as a copy of WebTerminal's /terminal application but with <b>Session Cookie Scope</b> set to <b>None</b>.</li>
+              <li>The <b>Parameter HandleCorsRequest=1</b> patch was added to <b>WebTerminal.Router.cls</b> and the class was recompiled.</li>
+              <li>The account use by the Web Gateway (typically <b>CSPSystem</b>) has at least READ privilege on the security resource which protects WebTerminal's code database.
+            </ul>
+            Use the <b>WebTerminal in External Browser</b> option from the context menu of the server's row in the Server Manager tree to verify some of these factors.
+          </p>
+        </div>
+
         <div id="content" class="content">
 					<iframe sandbox="allow-scripts allow-same-origin"></iframe>
 				</div>
