@@ -9,9 +9,13 @@ The button is also available under the Namespaces tree of each server. Use it th
 
  ![Server Manager tree](images/README/demo1.gif)
 
+ > The extension is competing in the [InterSystems Grand Prix 2022](https://openexchange.intersystems.com/contest/23) programming contest. Voting period: May 30 - June 5, 2022. If you like it please vote for it.
+
 ## Installation
 
-This extension depends on the InterSystems Server Manager, and will install it automatically if necessary.
+The extension is published on [Marketplace](https://marketplace.visualstudio.com/items?itemName=georgejames.webterminal-vscode). Either install it from there, or search for its identifier `georgejames.webterminal-vscode` in the Extensions view of [VS Code](https://code.visualstudio.com/Download).
+
+This extension depends on the InterSystems Server Manager extension, and will install it automatically if necessary.
 
 WebTerminal must already be installed on the target InterSystems servers. See [here](https://intersystems-community.github.io/webterminal/#downloads) for instructions. The current WebTerminal version (4.9.3) is documented as working on versions from 2014.1 upward.
 
