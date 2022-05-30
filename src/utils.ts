@@ -17,7 +17,8 @@ export async function webViewMessage(serverId: string, withCredentials: boolean,
       const pathPrefix = serverSpec.webServer.pathPrefix
 
       const query = namespace ? `ns=${namespace}` : "";
-      const message: WebTerminalMessage = {url: vscode.Uri.from({scheme, authority: `${host}:${port}`, path: `${pathPrefix}/terminal-vscode/`, query}).toString(true)};
+      const app = withCredentials ? "terminal-vscode" : "terminal";
+      const message: WebTerminalMessage = {url: vscode.Uri.from({scheme, authority: `${host}:${port}`, path: `${pathPrefix}/${app}/`, query}).toString(true)};
       if (withCredentials) {
         let username = serverSpec.username;
         let password = serverSpec.password;
