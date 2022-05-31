@@ -26,6 +26,7 @@ To launch them in VS Code tabs do the following:
 > This procedure has been verified with:
 > - IRIS 2020.1.1 and IIS 10.0 web server
 > - IRIS 2021.1.2 and Apache 2.4.29
+> 
 > Correct operation on other products and versions remains unproven.
 
 1. In Portal's System Administration > Security > Applications > Web Applications page, create a new entry copied from `/terminal`. Name the copy `/terminal-vscode`. Suggested description is `Copy of /terminal for use by georgejames.webterminal-vscode extension`
