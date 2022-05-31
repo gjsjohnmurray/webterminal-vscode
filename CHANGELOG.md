@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.0.2 (31-May-2022)
+* Add missing `UseSession` line to README.
+
 ## 1.0.1 (30-May-2022)
 * Improve and correct README
   * Correct error in text about `Session Cookie Scope` setting.

@@ -23,7 +23,10 @@ If you only want to open WebTerminals in your browser using the context menu (se
 
 To launch them in VS Code tabs do the following:
 
-> This procedure has so far only been verified with IRIS 2020.1.1 and IIS 10.0 web server. Correct operation on other products and versions remains unproven.
+> This procedure has been verified with:
+> - IRIS 2020.1.1 and IIS 10.0 web server
+> - IRIS 2021.1.2 and Apache 2.4.29
+> Correct operation on other products and versions remains unproven.
 
 1. In Portal's System Administration > Security > Applications > Web Applications page, create a new entry copied from `/terminal`. Name the copy `/terminal-vscode`. Suggested description is `Copy of /terminal for use by georgejames.webterminal-vscode extension`
 2. Set the `Session Cookie Scope` of the new `/terminal-vscode` application to the value `None`.
@@ -36,9 +39,10 @@ To launch them in VS Code tabs do the following:
 4. Configure your Server Manager connection to use this web server. Use a hostname for which the web server's certificate is valid. If the certificate is self-signed or is issued by a CA that your workstation doesn't automatically trust you will also need to do the following sub-steps, otherwise the connection is likely to fail:
    - Be using Server Manager [2.0.10-beta.2](https://github.com/intersystems-community/intersystems-servermanager/releases/download/v2.0.10-beta.2/servermanager-2.0.10-beta.2.vsix) or later.
    - Have the setting `"http.proxyStrictSSL": false` at Workspace or User level.
-5. Patch `WebTerminal.Router.cls` in the namespace where you installed WebTerminal, adding this line and recompiling the class after saving it:
+5. Patch `WebTerminal.Router.cls` in the namespace where you installed WebTerminal, adding these lines and recompiling the class after saving it:
 ```objectscript
   Parameter HandleCorsRequest = 1;
+  Parameter UseSession As BOOLEAN = 1;
 ```
 6. Make sure that the account used by the secure web server's InterSystems Web Gateway (typically `CSPSystem`) has at least **READ** privilege on the security resource which protects WebTerminal's code database.
   
