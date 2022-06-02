@@ -58,6 +58,7 @@
       "view/item/context": [
         {
           "command": "webterminal.intersystems-servermanager",
+          "alt": "webterminal-external.intersystems-servermanager",
           "when": "view == intersystems-community_servermanager && viewItem =~ /\\.server\\./",
           "group": "inline@20"
         },
@@ -68,6 +69,7 @@
         },
         {
           "command": "webterminal-namespace.intersystems-servermanager",
+          "alt": "webterminal-external-namespace.intersystems-servermanager",
           "when": "view == intersystems-community_servermanager && viewItem =~ /namespace$/",
           "group": "inline@1"
         },
