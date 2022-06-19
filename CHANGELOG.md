@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.3 (19-Jun-2022)
+* Support alt-modifier launch in external browser from Server Manager button.
+* Fix README formatting.
+
 ## 1.0.2 (31-May-2022)
 * Add missing `UseSession` line to README.
 

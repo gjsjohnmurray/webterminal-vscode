@@ -37,6 +37,7 @@ To launch them in VS Code tabs do the following:
    - /terminal-vscode
    - /terminalsocket
 > An open [WebTerminal issue](https://github.com/intersystems-community/webterminal/issues/142) means these have to be served from the root of the web server (e.g. https://myserver.internal/terminal/). If placed under a subfolder (e.g. https://myserver.internal/dev/terminal/) the initial standalone WebTerminal authentication dialog will appear but connection will fail.
+
 4. Configure your Server Manager connection to use this web server. Use a hostname for which the web server's certificate is valid. If the certificate is self-signed or is issued by a CA that your workstation doesn't automatically trust you will also need to do the following sub-steps, otherwise the connection is likely to fail:
    - Be using Server Manager [2.0.10-beta.2](https://github.com/intersystems-community/intersystems-servermanager/releases/download/v2.0.10-beta.2/servermanager-2.0.10-beta.2.vsix) or later.
    - Have the setting `"http.proxyStrictSSL": false` at Workspace or User level.
