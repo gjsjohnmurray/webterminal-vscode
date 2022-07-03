@@ -5,7 +5,7 @@ This extension adds a command button to each entry in the [InterSystems Server M
 
 The button is also available under the Namespaces tree of each server. Use it there to start your WebTerminal in the chosen namespace. This action also adds the namespace name to the label of the WebTerminal tab.
 
- If you prefer to open a WebTerminal externally in your default web browser, use the context menu of the server row or namespace row.
+ If you prefer to open a WebTerminal externally in your default web browser, use the context menu of the server row or namespace row. Alternatively hold the `Alt` key down when clicking the button.
 
  ![Server Manager tree](images/README/demo1.gif)
 
