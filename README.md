@@ -9,7 +9,7 @@ The button is also available under the Namespaces tree of each server. Use it th
 
  ![Server Manager tree](images/README/demo1.gif)
 
- > The extension is competing in the [InterSystems Grand Prix 2022](https://openexchange.intersystems.com/contest/23) programming contest. Voting period: May 30 - June 5, 2022. If you like it please vote for it.
+ > The extension competed in the [InterSystems Grand Prix 2022](https://openexchange.intersystems.com/contest/23) programming contest. Thanks to those who voted for it.
 
 ## Installation
 
@@ -17,7 +17,7 @@ The extension is published on [Marketplace](https://marketplace.visualstudio.com
 
 This extension depends on the InterSystems Server Manager extension, and will install it automatically if necessary.
 
-WebTerminal must already be installed on the target InterSystems servers. See [here](https://intersystems-community.github.io/webterminal/#downloads) for instructions. The current WebTerminal version (4.9.3) is documented as working on versions from 2014.1 upward.
+WebTerminal must already be installed on the target InterSystems servers. See [here](https://intersystems-community.github.io/webterminal/#downloads) for instructions. The current WebTerminal version (4.9.4) is documented as working on versions from 2014.1 upward.
 
 If you only want to open WebTerminals in your browser using the context menu (see above), no further setup is required.
 
@@ -36,10 +36,9 @@ To launch them in VS Code tabs do the following:
    - /terminal
    - /terminal-vscode
    - /terminalsocket
-> An open [WebTerminal issue](https://github.com/intersystems-community/webterminal/issues/142) means these have to be served from the root of the web server (e.g. https://myserver.internal/terminal/). If placed under a subfolder (e.g. https://myserver.internal/dev/terminal/) the initial standalone WebTerminal authentication dialog will appear but connection will fail.
 
 4. Configure your Server Manager connection to use this web server. Use a hostname for which the web server's certificate is valid. If the certificate is self-signed or is issued by a CA that your workstation doesn't automatically trust you will also need to do the following sub-steps, otherwise the connection is likely to fail:
-   - Be using Server Manager [2.0.10-beta.2](https://github.com/intersystems-community/intersystems-servermanager/releases/download/v2.0.10-beta.2/servermanager-2.0.10-beta.2.vsix) or later.
+   - Be using Server Manager 2.0.10 or later.
    - Have the setting `"http.proxyStrictSSL": false` at Workspace or User level.
 5. Patch `WebTerminal.Router.cls` in the namespace where you installed WebTerminal, adding these lines and recompiling the class after saving it:
 ```objectscript
