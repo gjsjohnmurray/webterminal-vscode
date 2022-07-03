@@ -2,7 +2,7 @@
   "name": "webterminal-vscode",
   "displayName": "Launch WebTerminals from InterSystems Server Manager",
   "description": "Adds WebTerminal launch buttons to the InterSystems Server Manager tree",
-  "version": "1.0.3",
+  "version": "1.0.4-SNAPSHOT",
   "publisher": "georgejames",
   "license": "MIT",
   "keywords": [
@@ -23,6 +23,9 @@
       "email": "johnm@georgejames.com"
     }
   ],
+  "sponsor": {
+    "url": "https://github.com/sponsors/gjsjohnmurray"
+  },
   "categories": [
     "Other"
   ],
