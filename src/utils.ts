@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { WebTerminalMessage } from './webterminalPanel';
+import { WebTerminalMessage } from './webTerminalPanel';
 
 export async function webViewMessage(serverId: string, withCredentials: boolean, namespace?: string): Promise<WebTerminalMessage> {
   const smExtension = vscode.extensions.getExtension('intersystems-community.servermanager');

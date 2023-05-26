@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { webViewMessage } from './utils';
-import { WebTerminalPanel } from './webterminalPanel';
+import { WebTerminalPanel } from './webTerminalPanel';
 
 export async function register(context: vscode.ExtensionContext) {
 
